@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView
 
-from works.forms import SubjectForm
+from works.forms import SubjectForm, WorkForm
 from works.models import Work, Subject
 
 
@@ -15,6 +15,12 @@ class WorksListView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['subject'] = Subject.objects.get(pk=self.kwargs['subject_pk'])
         return super(WorksListView, self).get_context_data(**kwargs)
+
+
+class WorkCreateView(CreateView):
+    template_name = 'works/form_base.html'
+    form_class = WorkForm
+    success_url = '/'
 
 
 class SubjectsListView(ListView):
