@@ -25,3 +25,11 @@ class WorkForm(forms.ModelForm):
     class Meta:
         model = Work
         fields = '__all__'
+
+
+class WorkForm(forms.ModelForm):
+    """Форма добавления """
+
+    class Meta:
+        model = Work
+        fields = '__all__'
