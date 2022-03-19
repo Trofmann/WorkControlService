@@ -3,7 +3,7 @@ IN_WORK_CODE = 1
 COMPLETED_CODE = 3
 NOT_STARTED = 'Не начато'
 IN_WORK = 'В работе'
-COMPLETED = 'Сдано'
+COMPLETED = 'Выполнено'
 STATUSES = (
     (NOT_STARTED_CODE, NOT_STARTED),
     (IN_WORK_CODE, IN_WORK),

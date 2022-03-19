@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 
-from works.consts import STATUSES, NOT_STARTED_CODE, STATUSES_DICT
+from works.consts import STATUSES, NOT_STARTED_CODE, STATUSES_DICT, IN_WORK_CODE, COMPLETED_CODE
 
 
 class Subject(models.Model):
@@ -23,9 +23,32 @@ class Subject(models.Model):
         return self.name
 
     @property
-    def works_count(self):
+    def not_started_works_count(self):
+        """Количество работ в статусе 'Не начато'"""
+        return self.works.filter(status=NOT_STARTED_CODE).count()
+
+    @property
+    def in_work_works_count(self):
+        """Количество работ в статусе 'В работе'"""
+        return self.works.filter(status=IN_WORK_CODE).count()
+
+    @property
+    def completed_works_count(self):
+        """Количество работ в статусе 'Выполнено'"""
+        return self.works.filter(status=COMPLETED_CODE).count()
+
+    @property
+    def expired_works_count(self):
+        """Количество просроченных работ"""
+        count_ = 0
+        for work in self.works.all():
+            count_ += work.expired
+        return count_
+
+    @property
+    def total_works_count(self):
         """Количество работ по предмету"""
-        return models.Count(self.works)
+        return self.works.count()
 
 
 class Work(models.Model):
@@ -71,4 +94,6 @@ class Work(models.Model):
 
     @property
     def expired(self):
-        return datetime.datetime.now() > self.deadline
+        today = datetime.datetime.today()
+        today_date = datetime.date(year=today.year, month=today.month, day=today.day)
+        return (self.status != COMPLETED_CODE) and (today_date > self.deadline)
