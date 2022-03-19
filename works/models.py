@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 
-from works.consts import STATUSES, NOT_STARTED_CODE
+from works.consts import STATUSES, NOT_STARTED_CODE, STATUSES_DICT
 
 
 class Subject(models.Model):
@@ -63,6 +63,11 @@ class Work(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def status_str(self):
+        """Статус хранится в виде числа, а отображать надо в виде слова"""
+        return STATUSES_DICT[self.status]
 
     @property
     def expired(self):

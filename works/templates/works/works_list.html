@@ -6,13 +6,23 @@
 </head>
 <body>
 <h1>Все работы по предмету {{ subject.name }}</h1>
-{% for work in works %}
-    <div>
-        <p>
-            {{ work.name }}
-        </p>
-    </div>
-{% endfor %}
+
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Статус</th>
+        <th>Дедлайн</th>
+    </tr>
+
+    {% for work in works %}
+        <tr>
+            <td>{{ work.name }}</td>
+            <td>{{ work.status_str }}</td>
+            <td>{{ work.deadline }}</td>
+        </tr>
+    {% endfor %}
+
+</table>
 <a href="{% url 'works:add_work' %}">Добавить</a>
 </body>
 </html>
