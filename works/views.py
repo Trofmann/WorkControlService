@@ -20,7 +20,9 @@ class WorksListView(ListView):
 class WorkCreateView(CreateView):
     template_name = 'works/form_base.html'
     form_class = WorkForm
-    success_url = '/'
+
+    def get_success_url(self):
+        return f'/{self.object.subject.pk}'
 
 
 class SubjectsListView(ListView):
