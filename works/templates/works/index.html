@@ -6,13 +6,34 @@
 </head>
 <body>
 <h1>Все предметы</h1>
-{% for subject in subjects %}
-    <div>
-        <p>
-            {{ subject.name }}
-        </p>
-    </div>
-{% endfor %}
+
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Кол-во работ в статусе "Не начато"</th>
+        <th>Кол-во работ в статусе "В работе"</th>
+        <th>Кол-во работ в статусе "Выполнено"</th>
+        <th>Кол-во работ в статусе "Всего"</th>
+    </tr>
+
+    {% for subject in subjects %}
+        <tr>
+            <td>
+                <div>
+                    <a href="https://www.google.ru/">
+                        {{ subject.name }}
+                    </a>
+                </div>
+            </td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    {% endfor %}
+
+</table>
+
 <a href="{% url 'works:add_subject' %}">Добавить</a>
 </body>
 </html>
