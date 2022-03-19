@@ -21,7 +21,12 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+    @property
+    def works_count(self):
+        """Количество работ по предмету"""
+        return models.Count(self.works)
+
 
 class Work(models.Model):
     """Работа"""
@@ -54,6 +59,7 @@ class Work(models.Model):
     class Meta:
         verbose_name = 'Работа'
         verbose_name_plural = 'Работы'
+        ordering = ['deadline', 'status', 'name']
 
     def __str__(self):
         return self.name
