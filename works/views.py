@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import ListView, CreateView
 
 from works.forms import SubjectForm, WorkForm
@@ -43,3 +45,9 @@ class SubjectCreateView(CreateView):
     template_name = 'works/form_base.html'
     form_class = SubjectForm
     success_url = '/'
+
+
+def delete_subject(request, subject_pk):
+    """Удаление предмета"""
+    Subject.objects.get(pk=subject_pk).delete()
+    return HttpResponseRedirect(reverse('works:subjects_list'))

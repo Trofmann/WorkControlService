@@ -19,6 +19,7 @@
         <th>Выполнено</th>
         <th>Просрочено</th>
         <th>Всего</th>
+        <th></th>
     </tr>
     </thead>
 
@@ -45,6 +46,7 @@
             <td>{{ subject.completed_works_count }}</td>
             <td>{{ subject.expired_works_count }}</td>
             <td>{{ subject.total_works_count }}</td>
+            <td><a href="{% url 'works:delete_subject' subject.pk %}">Удалить</a></td>
         </tr>
     {% endfor %}
     </tbody>
