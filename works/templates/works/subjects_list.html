@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css"
-        href="{% static 'works/styles.css' %}?100">
+        href="{% static 'works/styles.css' %}?111">
 </head>
 <body>
 <h1>Все предметы</h1>
@@ -24,7 +24,7 @@
 
     <tbody>
         {% for subject in subjects %}
-            <tr>
+            <tr {% if subject.completed %} class="completed" {% endif %}>
                 <td>
                     <div>
                         <a href="{% url 'works:works_list' subject.pk %}">

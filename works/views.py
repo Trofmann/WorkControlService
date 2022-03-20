@@ -24,11 +24,15 @@ class WorkCreateView(CreateView):
     def get_success_url(self):
         return f'/{self.object.subject.pk}'
 
+    def get_form_kwargs(self, **kwargs):
+        kwargs['subject'] = self.object.subject
+        return super(WorkCreateView, self).get_form_kwargs(**kwargs)
+
 
 class SubjectsListView(ListView):
     """Все предметы"""
     context_object_name = 'subjects'
-    template_name = 'works/index.html'
+    template_name = 'works/subjects_list.html'
 
     def get_queryset(self):
         return Subject.objects.all()

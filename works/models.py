@@ -50,6 +50,10 @@ class Subject(models.Model):
         """Количество работ по предмету"""
         return self.works.count()
 
+    @property
+    def completed(self):
+        return self.total_works_count == self.completed_works_count
+
 
 class Work(models.Model):
     """Работа"""
