@@ -27,10 +27,10 @@
     {% for subject in subjects %}
         <tr
                 {% if subject.completed %}
-                    class="expired"
+                    class="completed"
                 {% else %}
                     {% if subject.has_expired %}
-                    class="completed"
+                    class="expired"
                     {% endif %}
                 {% endif %}
         >
