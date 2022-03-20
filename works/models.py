@@ -104,6 +104,8 @@ class Work(models.Model):
 
     @property
     def expired(self):
-        today = datetime.datetime.today()
-        today_date = datetime.date(year=today.year, month=today.month, day=today.day)
-        return (self.status != COMPLETED_CODE) and (today_date > self.deadline)
+        if self.deadline is not None:
+            today = datetime.datetime.today()
+            today_date = datetime.date(year=today.year, month=today.month, day=today.day)
+            return (self.status != COMPLETED_CODE) and (today_date > self.deadline)
+        return False
