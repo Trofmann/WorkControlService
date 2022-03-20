@@ -5,40 +5,48 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css"
-        href="{% static 'works/styles.css' %}?111">
+          href="{% static 'works/styles.css' %}?111">
 </head>
 <body>
 <h1>Все предметы</h1>
 
 <table class="resp-tab">
     <thead>
-        <tr>
-            <th>Название</th>
-            <th>Не начато</th>
-            <th>В работе</th>
-            <th>Выполнено</th>
-            <th>Просрочено</th>
-            <th>Всего</th>
-        </tr>
+    <tr>
+        <th>Название</th>
+        <th>Не начато</th>
+        <th>В работе</th>
+        <th>Выполнено</th>
+        <th>Просрочено</th>
+        <th>Всего</th>
+    </tr>
     </thead>
 
     <tbody>
-        {% for subject in subjects %}
-            <tr {% if subject.completed %} class="" {% endif %}>
-                <td>
-                    <div>
-                        <a href="{% url 'works:works_list' subject.pk %}">
-                            {{ subject.name }}
-                        </a>
-                    </div>
-                </td>
-                <td>{{ subject.not_started_works_count }}</td>
-                <td>{{ subject.in_work_works_count }}</td>
-                <td>{{ subject.completed_works_count }}</td>
-                <td>{{ subject.expired_works_count }}</td>
-                <td>{{ subject.total_works_count }}</td>
-            </tr>
-        {% endfor %}
+    {% for subject in subjects %}
+        <tr
+                {% if subject.completed %}
+                    class="completed"
+                {% else %}
+                    {% if subject.has_expired %}
+                    class="expired"
+                    {% endif %}
+                {% endif %}
+        >
+            <td>
+                <div>
+                    <a href="{% url 'works:works_list' subject.pk %}">
+                        {{ subject.name }}
+                    </a>
+                </div>
+            </td>
+            <td>{{ subject.not_started_works_count }}</td>
+            <td>{{ subject.in_work_works_count }}</td>
+            <td>{{ subject.completed_works_count }}</td>
+            <td>{{ subject.expired_works_count }}</td>
+            <td>{{ subject.total_works_count }}</td>
+        </tr>
+    {% endfor %}
     </tbody>
 
 </table>

@@ -42,13 +42,13 @@
     background-color: #67E570FF;
 }
 
-.resp-tab .overdue:nth-child(odd) {
+.resp-tab .expired:nth-child(odd) {
     font-size: 13px;
     border-right: 1px solid #E6E4E4;
     background-color: #FD2C2CFF;
 }
 
-.resp-tab .overdue:nth-child(even) {
+.resp-tab .expired:nth-child(even) {
     font-size: 13px;
     border-right: 1px solid #E6E4E4;
     background-color: #FD2C2CFF;
@@ -142,13 +142,13 @@
         background-color: #67E570FF;
     }
 
-    .resp-tab .overdue:nth-child(odd) {
+    .resp-tab .expired:nth-child(odd) {
         font-size: 13px;
         border-right: 1px solid #E6E4E4;
         background-color: #FD2C2CFF;
     }
 
-    .resp-tab .overdue:nth-child(even) {
+    .resp-tab .expired:nth-child(even) {
         font-size: 13px;
         border-right: 1px solid #E6E4E4;
         background-color: #FD2C2CFF;

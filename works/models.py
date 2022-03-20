@@ -52,7 +52,13 @@ class Subject(models.Model):
 
     @property
     def completed(self):
+        """Выполнены все работы по предмету"""
         return self.total_works_count == self.completed_works_count
+
+    @property
+    def has_expired(self):
+        """Есть просроченные работы по предмету"""
+        return bool(self.expired_works_count)
 
 
 class Work(models.Model):
