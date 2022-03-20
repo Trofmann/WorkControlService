@@ -45,13 +45,13 @@
 .resp-tab .expired:nth-child(odd) {
     font-size: 13px;
     border-right: 1px solid #E6E4E4;
-    background-color: #FD2C2CFF;
+    background-color: rgba(248, 37, 37, 0.5);
 }
 
 .resp-tab .expired:nth-child(even) {
     font-size: 13px;
     border-right: 1px solid #E6E4E4;
-    background-color: #FD2C2CFF;
+    background-color: rgba(248, 37, 37, 0.5);
 }
 
 
@@ -145,12 +145,12 @@
     .resp-tab .expired:nth-child(odd) {
         font-size: 13px;
         border-right: 1px solid #E6E4E4;
-        background-color: #FD2C2CFF;
+        background-color: rgba(248, 37, 37, 0.5);
     }
 
     .resp-tab .expired:nth-child(even) {
         font-size: 13px;
         border-right: 1px solid #E6E4E4;
-        background-color: #FD2C2CFF;
+        background-color: rgba(248, 37, 37, 0.5);
     }
 }

@@ -1,13 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css"
+        href="{% static 'works/styles.css' %}?111">
 </head>
 <body>
 <h1>Все работы по предмету {{ subject.name }}</h1>
 
-<table>
+<table class="resp-tab">
     <tr>
         <th>Название</th>
         <th>Статус</th>
