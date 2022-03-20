@@ -1,38 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css"
+        href="{% static 'works/styles.css' %}?100">
 </head>
 <body>
 <h1>Все предметы</h1>
 
-<table>
-    <tr>
-        <th>Название</th>
-        <th>Не начато</th>
-        <th>В работе</th>
-        <th>Выполнено</th>
-        <th>Просрочено</th>
-        <th>Всего</th>
-    </tr>
-
-    {% for subject in subjects %}
+<table class="resp-tab">
+    <thead>
         <tr>
-            <td>
-                <div>
-                    <a href="{% url 'works:works_list' subject.pk %}">
-                        {{ subject.name }}
-                    </a>
-                </div>
-            </td>
-            <td>{{ subject.not_started_works_count }}</td>
-            <td>{{ subject.in_work_works_count }}</td>
-            <td>{{ subject.completed_works_count }}</td>
-            <td>{{ subject.expired_works_count }}</td>
-            <td>{{ subject.total_works_count }}</td>
+            <th>Название</th>
+            <th>Не начато</th>
+            <th>В работе</th>
+            <th>Выполнено</th>
+            <th>Просрочено</th>
+            <th>Всего</th>
         </tr>
-    {% endfor %}
+    </thead>
+
+    <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td>
+                    <div>
+                        <a href="{% url 'works:works_list' subject.pk %}">
+                            {{ subject.name }}
+                        </a>
+                    </div>
+                </td>
+                <td>{{ subject.not_started_works_count }}</td>
+                <td>{{ subject.in_work_works_count }}</td>
+                <td>{{ subject.completed_works_count }}</td>
+                <td>{{ subject.expired_works_count }}</td>
+                <td>{{ subject.total_works_count }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
 
 </table>
 
