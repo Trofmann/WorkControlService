@@ -25,8 +25,9 @@ class WorkCreateView(CreateView):
         return f'/{self.object.subject.pk}'
 
     def get_form_kwargs(self, **kwargs):
-        kwargs['subject'] = self.object.subject
-        return super(WorkCreateView, self).get_form_kwargs(**kwargs)
+        kwargs = super(WorkCreateView, self).get_form_kwargs()
+        kwargs['subject'] = Subject.objects.get(pk=self.kwargs.get('subject_pk'))
+        return kwargs
 
 
 class SubjectsListView(ListView):
