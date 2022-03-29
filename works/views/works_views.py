@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 from works.forms import WorkForm
 from works.models import Work, Subject
@@ -20,6 +20,7 @@ class WorksListView(ListView):
 
 
 class WorkCreateView(CreateView):
+    """Создание работы"""
     template_name = 'works/form_base.html'
     form_class = WorkForm
 
@@ -29,6 +30,21 @@ class WorkCreateView(CreateView):
     def get_form_kwargs(self, **kwargs):
         kwargs = super(WorkCreateView, self).get_form_kwargs()
         kwargs['subject'] = Subject.objects.get(pk=self.kwargs.get('subject_pk'))
+        return kwargs
+
+
+class WorkUpdateView(UpdateView):
+    """Редактирование работы"""
+    model = Work
+    template_name = 'works/form_base.html'
+    form_class = WorkForm
+
+    def get_success_url(self):
+        return f'/{self.object.subject.pk}'
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(WorkUpdateView, self).get_form_kwargs()
+        kwargs['subject'] = Subject.objects.get(pk=self.object.subject.pk)
         return kwargs
 
 

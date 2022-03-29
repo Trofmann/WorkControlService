@@ -20,8 +20,6 @@ class WorkForm(forms.ModelForm):
         widget=SelectDateWidget
     )
 
-    # SelectDateWidget
-
     class Meta:
         model = Work
         exclude = (
