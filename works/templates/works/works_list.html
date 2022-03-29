@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css"
-        href="{% static 'works/styles.css' %}?111">
+          href="{% static 'works/styles.css' %}?111">
 </head>
 <body>
 <h1>Все работы по предмету {{ subject.name }}</h1>
@@ -15,6 +15,8 @@
         <th>Название</th>
         <th>Статус</th>
         <th>Дедлайн</th>
+        <th></th>
+        <th></th>
     </tr>
 
     {% for work in works %}
@@ -22,6 +24,8 @@
             <td>{{ work.name }}</td>
             <td>{{ work.status_str }}</td>
             <td>{{ work.deadline }}</td>
+            <td><a href="https://www.google.com/">Редактировать</a></td>
+            <td><a href="https://www.google.com/">Удалить</a></td>
         </tr>
     {% endfor %}
 

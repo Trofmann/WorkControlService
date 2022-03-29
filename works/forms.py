@@ -13,7 +13,7 @@ class SubjectForm(forms.ModelForm):
 
 
 class WorkForm(forms.ModelForm):
-    """Форма добавления """
+    """Форма добавления работы"""
     deadline = forms.DateField(
         label='Дедлайн',
         required=False,
