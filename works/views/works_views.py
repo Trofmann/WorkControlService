@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import ListView, CreateView
 
 from works.forms import WorkForm
@@ -28,3 +30,11 @@ class WorkCreateView(CreateView):
         kwargs = super(WorkCreateView, self).get_form_kwargs()
         kwargs['subject'] = Subject.objects.get(pk=self.kwargs.get('subject_pk'))
         return kwargs
+
+
+def delete_work(request, work_pk):
+    """Удаление работы"""
+    work = Work.objects.get(pk=work_pk)
+    subject_pk = work.subject.pk
+    work.delete()
+    return HttpResponseRedirect(reverse('works:works_list', kwargs={'subject_pk': subject_pk}))

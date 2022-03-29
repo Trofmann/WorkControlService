@@ -1,6 +1,6 @@
 from django.urls import re_path
 
-from works.views import SubjectsListView, WorksListView, SubjectCreateView, WorkCreateView, delete_subject
+from works.views import SubjectsListView, WorksListView, SubjectCreateView, WorkCreateView, delete_subject, delete_work
 
 app_name = 'works'
 
@@ -17,4 +17,5 @@ urlpatterns += [
 urlpatterns += [
     re_path('^(?P<subject_pk>[0-9]*)/$', WorksListView.as_view(), name='works_list'),
     re_path('^add_work/(?P<subject_pk>[0-9]*)', WorkCreateView.as_view(), name='add_work'),
+    re_path('^delete_work/(?P<work_pk>[0-9]*)', delete_work, name='delete_work')
 ]

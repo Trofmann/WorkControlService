@@ -25,7 +25,7 @@
             <td>{{ work.status_str }}</td>
             <td>{{ work.deadline }}</td>
             <td><a href="https://www.google.com/">Редактировать</a></td>
-            <td><a href="https://www.google.com/">Удалить</a></td>
+            <td><a href={% url 'works:delete_work' work.pk %}>Удалить</a></td>
         </tr>
     {% endfor %}
 
