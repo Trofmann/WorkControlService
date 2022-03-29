@@ -47,7 +47,7 @@
             <td>{{ subject.completed_works_count }}</td>
             <td>{{ subject.expired_works_count }}</td>
             <td>{{ subject.total_works_count }}</td>
-            <td><a href="https://www.google.com/">Редактировать</a></td>
+            <td><a href={% url 'works:update_subject' subject.pk %}>Редактировать</a></td>
             <td><a href="{% url 'works:delete_subject' subject.pk %}">Удалить</a></td>
         </tr>
     {% endfor %}
