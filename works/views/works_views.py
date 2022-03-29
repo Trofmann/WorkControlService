@@ -19,13 +19,17 @@ class WorksListView(ListView):
         return super(WorksListView, self).get_context_data(**kwargs)
 
 
-class WorkCreateView(CreateView):
-    """Создание работы"""
+class WorkUpdateCreateViewMixin(object):
+    model = Work
     template_name = 'works/form_base.html'
     form_class = WorkForm
 
     def get_success_url(self):
         return f'/{self.object.subject.pk}'
+
+
+class WorkCreateView(WorkUpdateCreateViewMixin, CreateView):
+    """Создание работы"""
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(WorkCreateView, self).get_form_kwargs()
@@ -33,14 +37,8 @@ class WorkCreateView(CreateView):
         return kwargs
 
 
-class WorkUpdateView(UpdateView):
+class WorkUpdateView(WorkUpdateCreateViewMixin, UpdateView):
     """Редактирование работы"""
-    model = Work
-    template_name = 'works/form_base.html'
-    form_class = WorkForm
-
-    def get_success_url(self):
-        return f'/{self.object.subject.pk}'
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(WorkUpdateView, self).get_form_kwargs()
