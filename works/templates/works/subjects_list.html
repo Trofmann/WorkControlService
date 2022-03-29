@@ -6,6 +6,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css"
           href="{% static 'works/styles.css' %}?111">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <h1>Все предметы</h1>
@@ -47,8 +48,12 @@
             <td>{{ subject.completed_works_count }}</td>
             <td>{{ subject.expired_works_count }}</td>
             <td>{{ subject.total_works_count }}</td>
-            <td><a href={% url 'works:update_subject' subject.pk %}>Редактировать</a></td>
-            <td><a href="{% url 'works:delete_subject' subject.pk %}">Удалить</a></td>
+            <td><a href="{% url 'works:update_subject' subject.pk %}">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </a></td>
+            <td><a href="{% url 'works:delete_subject' subject.pk %}">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </a></td>
         </tr>
     {% endfor %}
     </tbody>
