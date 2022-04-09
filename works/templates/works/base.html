@@ -11,14 +11,17 @@
 </head>
 <body>
 {% block navigation %}
-    <div>
-        <a href="{% url 'works:subjects_list' %}">Главная</a>
+    <nav>
+        <ul>
+            <li><a href="{% url 'works:subjects_list' %}">Главная</a></li>
         {% if user.is_authenticated %}
-            <a href="{% url 'cabinet:logout' %}">Выход</a>
+            <li><a href="{% url 'cabinet:logout' %}">Выход</a></li>
         {% else %}
-            <a href="{% url 'cabinet:login' %}">Вход</a>
+            <li><a href="{% url 'cabinet:login' %}">Вход</a></li>
         {% endif %}
-    </div>
+        </ul>
+
+    </nav>
 {% endblock navigation %}
 
 {% block header %}
