@@ -1,58 +1,68 @@
 {% extends 'works/base.html' %}
 
+{% block title %}
+    <title>Предметы</title>
+{% endblock title %}
+
 {% block header %}
     <h1>Все предметы</h1>
 {% endblock header %}
 
 {% block table %}
-<table class="resp-tab">
-    <thead>
-    <tr>
-        <th>Название</th>
-        <th>Не начато</th>
-        <th>В работе</th>
-        <th>Выполнено</th>
-        <th>Просрочено</th>
-        <th>Всего</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    {% for subject in subjects %}
-        <tr
-                {% if subject.completed %}
-                    class="completed"
-                {% else %}
-                    {% if subject.has_expired %}
-                    class="expired"
-                    {% endif %}
-                {% endif %}
-        >
-            <td>
-                <div>
-                    <a href="{% url 'works:works_list' subject.pk %}">
-                        {{ subject.name }}
-                    </a>
-                </div>
-            </td>
-            <td>{{ subject.not_started_works_count }}</td>
-            <td>{{ subject.in_work_works_count }}</td>
-            <td>{{ subject.completed_works_count }}</td>
-            <td>{{ subject.expired_works_count }}</td>
-            <td>{{ subject.total_works_count }}</td>
-            <td><a href="{% url 'works:update_subject' subject.pk %}">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </a></td>
-            <td><a href="{% url 'works:delete_subject' subject.pk %}">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </a></td>
+    <table class="resp-tab">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Не начато</th>
+            <th>В работе</th>
+            <th>Выполнено</th>
+            <th>Просрочено</th>
+            <th>Всего</th>
+            <th></th>
+            <th></th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+        {% if not subjects %}
+            <tr>
+                <td colspan="8">Нет данных</td>
+            </tr>
+        {% else %}
+            {% for subject in subjects %}
+                <tr
+                        {% if subject.completed %}
+                            class="completed"
+                        {% else %}
+                            {% if subject.has_expired %}
+                            class="expired"
+                            {% endif %}
+                        {% endif %}
+                >
+                    <td>
+                        <div>
+                            <a href="{% url 'works:works_list' subject.pk %}">
+                                {{ subject.name }}
+                            </a>
+                        </div>
+                    </td>
+                    <td>{{ subject.not_started_works_count }}</td>
+                    <td>{{ subject.in_work_works_count }}</td>
+                    <td>{{ subject.completed_works_count }}</td>
+                    <td>{{ subject.expired_works_count }}</td>
+                    <td>{{ subject.total_works_count }}</td>
+                    <td><a href="{% url 'works:update_subject' subject.pk %}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a></td>
+                    <td><a href="{% url 'works:delete_subject' subject.pk %}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
 
-<a href="{% url 'works:add_subject' %}" class="button">Добавить</a>
+    </table>
+
+    <a href="{% url 'works:add_subject' %}" class="button">Добавить</a>
 {% endblock table %}

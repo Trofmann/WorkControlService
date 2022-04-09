@@ -1,9 +1,22 @@
 
+.logo {
+    position: absolute;
+    margin-left: 81%;
+    margin-top: -3%;
+}
+
+
+.logo::after {
+    content: url("../../static/works/images/logo.png");
+    display: block;
+}
+
+
 .menu-bar {
     border-radius: 25px;
     height: fit-content;
     display: flex;
-    background-color: rgba(31, 105, 255, 1);
+    background-color: rgba(201, 219, 255, 1);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     align-items: center;
@@ -21,6 +34,11 @@
   cursor: pointer;
   white-space: nowrap;
 }
+
+.menu-bar li a {
+    text-decoration:none;
+}
+
 .menu-bar li::before {
   content: " ";
     position: absolute;
@@ -33,21 +51,12 @@
     border-radius: 30px;
 }
 .menu-bar li:hover {
-  color: black;
+  color: #3089ff;
 }
 .menu-bar li:hover::before {
-  background: linear-gradient(to bottom, #e8edec, #d2d1d3);
-  box-shadow: 0px 3px 20px 0px black;
+  background: linear-gradient(to bottom, #ffffff, #e7e9f3);
+  box-shadow: 0px 1px 10px 0px #009bff;
   transform: scale(1.2);
-}
-
-.logo {
-
-}
-
-.logo::after {
-    content: url("../../static/works/images/logo.png");
-    display: block;
 }
 
 .resp-tab {
