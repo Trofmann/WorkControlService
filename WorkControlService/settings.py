@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'WorkControlService.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'work_control_service',
+        'NAME': 'work_control_service_new',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': '127.0.0.1',
@@ -129,3 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'works:subjects_list'
 LOGOUT_REDIRECT_URL = 'cabinet:login'
 LOGIN_URL = 'cabinet:login'
+
+AUTH_USER_MODEL = 'cabinet.ServiceUser'

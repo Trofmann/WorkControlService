@@ -1,3 +1,10 @@
-from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+
+class ServiceUser(AbstractUser):
+    """
+    Кастомная модель пользователя
+
+    Создана на случай возможного расширения базовой модели
+    """
+    pass
