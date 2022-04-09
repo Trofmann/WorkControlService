@@ -13,8 +13,11 @@
 {% block navigation %}
     <div>
         <a href="{% url 'works:subjects_list' %}">Главная</a>
-        <a href="{% url 'cabinet:login' %}">Вход</a>
-        <a href="{% url 'cabinet:logout' %}">Выход</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'cabinet:logout' %}">Выход</a>
+        {% else %}
+            <a href="{% url 'cabinet:login' %}">Вход</a>
+        {% endif %}
     </div>
 {% endblock navigation %}
 

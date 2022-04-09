@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView
@@ -6,7 +8,7 @@ from works.forms import WorkForm
 from works.models import Work, Subject
 
 
-class WorksListView(ListView):
+class WorksListView(LoginRequiredMixin, ListView):
     """Работы по предмету"""
     context_object_name = 'works'
     template_name = 'works/works_list.html'
@@ -19,7 +21,7 @@ class WorksListView(ListView):
         return super(WorksListView, self).get_context_data(**kwargs)
 
 
-class WorkUpdateCreateViewMixin(object):
+class WorkUpdateCreateViewMixin(LoginRequiredMixin):
     model = Work
     template_name = 'works/form_base.html'
     form_class = WorkForm
@@ -46,6 +48,7 @@ class WorkUpdateView(WorkUpdateCreateViewMixin, UpdateView):
         return kwargs
 
 
+@login_required
 def delete_work(request, work_pk):
     """Удаление работы"""
     work = Work.objects.get(pk=work_pk)
