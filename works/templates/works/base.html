@@ -12,7 +12,7 @@
 <body>
 {% block navigation %}
     <nav>
-        <ul>
+        <ul class="menu-bar">
             <li><a href="{% url 'works:subjects_list' %}">Главная</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'cabinet:logout' %}">Выход</a></li>
