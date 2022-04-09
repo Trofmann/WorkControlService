@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Title</title>
+    {% endblock title %}
+    <link rel="stylesheet" type="text/css" href="{% static 'works/styles.css' %}?111111">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+{% block navigation %}
+    <div>
+        <a href="{% url 'works:subjects_list' %}">Главная</a>
+        <a href="{% url 'cabinet:login' %}">Вход</a>
+        <a href="{% url 'cabinet:logout' %}">Выход</a>
+    </div>
+{% endblock navigation %}
+
+{% block header %}
+    <h1>Все предметы</h1>
+{% endblock header %}
+
+{% block table %}
+{% endblock table %}
+
+</body>
+</html>

@@ -1,21 +1,10 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css"
-          href="{% static 'works/styles.css' %}?111">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-<div>
-    <a href="{% url 'works:subjects_list'%}">Главная</a>
-    <a href="{% url 'cabinet:login'%}">Вход</a>
-    <a href="{% url 'cabinet:logout'%}">Выход</a>
-</div>
-<h1>Все работы по предмету {{ subject.name }}</h1>
+{% extends 'works/base.html' %}
 
+{% block header %}
+<h1>Все работы по предмету {{ subject.name }}</h1>
+{% endblock header %}
+
+{% block table %}
 <table class="resp-tab">
     <tr>
         <th>Название</th>
@@ -41,5 +30,4 @@
 
 </table>
 <a href="{% url 'works:add_work' subject.pk %}">Добавить</a>
-</body>
-</html>
+{% endblock table %}
