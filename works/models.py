@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 
+from cabinet.models import ServiceUser
 from works.consts import STATUSES, NOT_STARTED_CODE, STATUSES_DICT, IN_WORK_CODE, COMPLETED_CODE
 
 
@@ -12,6 +13,14 @@ class Subject(models.Model):
         max_length=200,
         null=False, blank=False,
         unique=True,
+    )
+
+    user = models.ForeignKey(
+        to=ServiceUser,
+        verbose_name='Пользователь',
+        related_name='subjects',
+        on_delete=models.CASCADE,
+        null=False, blank=False,
     )
 
     class Meta:
