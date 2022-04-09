@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<div>
+    <a href="{% url 'works:subjects_list'%}">Главная</a>
+    <a href="{% url 'cabinet:login'%}">Вход</a>
+    <a href="{% url 'cabinet:logout'%}">Выход</a>
+</div>
 <h1>Все работы по предмету {{ subject.name }}</h1>
 
 <table class="resp-tab">
