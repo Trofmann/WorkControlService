@@ -9,7 +9,17 @@ class SubjectForm(forms.ModelForm):
 
     class Meta:
         model = Subject
-        fields = '__all__'
+        fields = (
+            'name',
+        )
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super(SubjectForm, self).__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        self.instance.user = self.user
+        return super(SubjectForm, self).save(commit)
 
 
 class WorkForm(forms.ModelForm):

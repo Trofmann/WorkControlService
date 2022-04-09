@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from works.forms import SubjectForm
 from works.models import Subject
 
@@ -13,7 +14,7 @@ class SubjectsListView(LoginRequiredMixin, ListView):
     template_name = 'works/subjects_list.html'
 
     def get_queryset(self):
-        return Subject.objects.all()
+        return Subject.objects.filter(user=self.request.user)
 
 
 class SubjectCreateUpdateViewMixin(LoginRequiredMixin):
@@ -21,6 +22,11 @@ class SubjectCreateUpdateViewMixin(LoginRequiredMixin):
     template_name = 'works/form_base.html'
     form_class = SubjectForm
     success_url = '/'
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)
+        kwargs['user'] = self.request.user
+        return kwargs
 
 
 class SubjectCreateView(SubjectCreateUpdateViewMixin, CreateView):
