@@ -1,10 +1,4 @@
 from django.contrib.auth.views import LoginView as BaseLoginView, LogoutView as BaseLogoutView
-from django.views.generic import TemplateView
-
-
-class TitleView(TemplateView):
-    """Главная страница"""
-    template_name = 'cabinet/title_page.html'
 
 
 class LoginView(BaseLoginView):

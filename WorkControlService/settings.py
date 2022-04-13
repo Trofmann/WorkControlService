@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'works:subjects_list'
-LOGOUT_REDIRECT_URL = 'cabinet:login'
+LOGOUT_REDIRECT_URL = 'title_page'
 LOGIN_URL = 'cabinet:login'
 
 AUTH_USER_MODEL = 'cabinet.ServiceUser'
