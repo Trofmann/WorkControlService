@@ -13,8 +13,10 @@
 {% block navigation %}
     <nav>
         <ul class="menu-bar">
-            <li><a href="{% url 'title_page' %}">Главная</a></li>
-            <li><a href="{% url 'cabinet:logout' %}">Выход</a></li>
+            {% block navigation_pages %}
+                <li><a href="{% url 'title_page' %}">Главная</a></li>
+                <li><a href="{% url 'cabinet:logout' %}">Выход</a></li>
+            {% endblock navigation_pages %}
         </ul>
         <span class="logo">Система контроля</span>
     </nav>

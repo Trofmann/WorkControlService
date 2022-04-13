@@ -4,6 +4,12 @@
 <h1>Все работы по предмету {{ subject.name }}</h1>
 {% endblock header %}
 
+{% block navigation_pages %}
+    <li><a href="{% url 'title_page' %}">Главная</a></li>
+    <li><a href="{% url 'works:subjects_list' %}">Предметы</a></li>
+    <li><a href="{% url 'cabinet:logout' %}">Выход</a></li>
+{% endblock %}
+
 {% block table %}
 <table class="resp-tab">
     <tr>
