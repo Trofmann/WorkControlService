@@ -22,5 +22,5 @@ urlpatterns = [
     path('works/', include('works.urls')),
     path('cabinet/', include('cabinet.urls')),
     path('admin/', admin.site.urls),
-    re_path('', TitleView.as_view(), name='title_page'),
+    re_path('$', TitleView.as_view(), name='title_page'),
 ]

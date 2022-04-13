@@ -118,3 +118,7 @@ class Work(models.Model):
             today_date = datetime.date(year=today.year, month=today.month, day=today.day)
             return (self.status != COMPLETED_CODE) and (today_date > self.deadline)
         return False
+
+    @property
+    def deadline_table_value(self):
+        return self.deadline if self.deadline is not None else '—'

@@ -27,7 +27,7 @@ class WorkUpdateCreateViewMixin(LoginRequiredMixin):
     form_class = WorkForm
 
     def get_success_url(self):
-        return f'/{self.object.subject.pk}'
+        return reverse('works:works_list', args=[self.object.subject.pk])
 
 
 class WorkCreateView(WorkUpdateCreateViewMixin, CreateView):

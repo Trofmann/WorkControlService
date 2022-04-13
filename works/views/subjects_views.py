@@ -21,7 +21,9 @@ class SubjectCreateUpdateViewMixin(LoginRequiredMixin):
     model = Subject
     template_name = 'works/form_base.html'
     form_class = SubjectForm
-    success_url = '/'
+
+    def get_success_url(self):
+        return reverse('works:subjects_list')
 
     def get_form_kwargs(self, **kwargs):
         kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)

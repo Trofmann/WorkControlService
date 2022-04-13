@@ -24,7 +24,7 @@
         <tr>
             <td>{{ work.name }}</td>
             <td>{{ work.status_str }}</td>
-            <td>{{ work.deadline }}</td>
+            <td>{{ work.deadline_table_value }}</td>
             <td><a href="{% url 'works:update_work' work.pk %}">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </a></td>
