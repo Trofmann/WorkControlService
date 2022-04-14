@@ -30,26 +30,27 @@ class WorkUpdateCreateViewMixin(BaseUpdateCreateView):
     entity_name_genitive = 'работы'
     entity_name_accusative = 'работу'
 
+    @property
+    def subject_pk(self):
+        return self.kwargs.get('subject_pk') or self.object.subject.pk
+
     def get_success_url(self):
-        return reverse('works:works_list', args=[self.object.subject.pk])
+        return reverse('works:works_list', args=[self.subject_pk])
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = super(WorkUpdateCreateViewMixin, self).get_form_kwargs()
+        kwargs['subject'] = Subject.objects.get(pk=self.subject_pk)
+        return kwargs
 
 
 class WorkCreateView(WorkUpdateCreateViewMixin, CreateView):
     """Создание работы"""
-
-    def get_form_kwargs(self, **kwargs):
-        kwargs = super(WorkCreateView, self).get_form_kwargs()
-        kwargs['subject'] = Subject.objects.get(pk=self.kwargs.get('subject_pk'))
-        return kwargs
+    pass
 
 
 class WorkUpdateView(WorkUpdateCreateViewMixin, UpdateView):
     """Редактирование работы"""
-
-    def get_form_kwargs(self, **kwargs):
-        kwargs = super(WorkUpdateView, self).get_form_kwargs()
-        kwargs['subject'] = Subject.objects.get(pk=self.object.subject.pk)
-        return kwargs
+    pass
 
 
 @login_required

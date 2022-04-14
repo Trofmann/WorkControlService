@@ -18,3 +18,9 @@ class BaseUpdateCreateView(LoginRequiredMixin):
     @property
     def title(self):
         return f'{self.action} {self.entity_name_genitive}'
+
+    @property
+    def cancel_url(self):
+        """Ссылка для кнопки отмены"""
+        # Почти всегда и при сохранении, и при отмене возвращаемся на одно и то же место
+        return self.get_success_url()

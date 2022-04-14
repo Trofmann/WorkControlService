@@ -12,6 +12,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     {% block footer %}
+        {# Если Дима сделает ссылку похожую на кнопку, можно без такого костыля #}
+        <input class="button" type="button" onclick="window.location.replace('{{ view.cancel_url }}')"
+               value="Отмена"/>
         <input type="submit" value="Сохранить">
     {% endblock footer %}
 </form>
