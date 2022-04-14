@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView
 
 from works.forms import WorkForm
 from works.models import Work, Subject
+from works.views.base import BaseUpdateCreateView
 
 
 class WorksListView(LoginRequiredMixin, ListView):
@@ -21,10 +22,13 @@ class WorksListView(LoginRequiredMixin, ListView):
         return super(WorksListView, self).get_context_data(**kwargs)
 
 
-class WorkUpdateCreateViewMixin(LoginRequiredMixin):
+class WorkUpdateCreateViewMixin(BaseUpdateCreateView):
     model = Work
-    template_name = 'form_base.html'
     form_class = WorkForm
+
+    entity_name = 'работа'
+    entity_name_genitive = 'работы'
+    entity_name_accusative = 'работу'
 
     def get_success_url(self):
         return reverse('works:works_list', args=[self.object.subject.pk])

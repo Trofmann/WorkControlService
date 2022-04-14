@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView
 
 from works.forms import SubjectForm
 from works.models import Subject
+from works.views.base import BaseUpdateCreateView
 
 
 class SubjectsListView(LoginRequiredMixin, ListView):
@@ -17,10 +18,13 @@ class SubjectsListView(LoginRequiredMixin, ListView):
         return Subject.objects.filter(user=self.request.user)
 
 
-class SubjectCreateUpdateViewMixin(LoginRequiredMixin):
+class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
     model = Subject
-    template_name = 'form_base.html'
     form_class = SubjectForm
+
+    entity_name = 'предмет'
+    entity_name_genitive = 'предмета'
+    entity_name_accusative = 'предмет'
 
     def get_success_url(self):
         return reverse('works:subjects_list')
