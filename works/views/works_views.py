@@ -23,7 +23,7 @@ class WorksListView(LoginRequiredMixin, ListView):
 
 class WorkUpdateCreateViewMixin(LoginRequiredMixin):
     model = Work
-    template_name = 'works/form_base.html'
+    template_name = 'form_base.html'
     form_class = WorkForm
 
     def get_success_url(self):

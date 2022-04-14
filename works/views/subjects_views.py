@@ -19,7 +19,7 @@ class SubjectsListView(LoginRequiredMixin, ListView):
 
 class SubjectCreateUpdateViewMixin(LoginRequiredMixin):
     model = Subject
-    template_name = 'works/form_base.html'
+    template_name = 'form_base.html'
     form_class = SubjectForm
 
     def get_success_url(self):

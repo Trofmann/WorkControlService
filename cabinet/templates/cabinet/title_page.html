@@ -10,7 +10,7 @@
     <a href="{% url 'cabinet:logout' %}">Выход</a>
 {% else %}
     <a href="{% url 'cabinet:login' %}">Вход</a>
-    <a href="https://www.google.com/">Зарегистрироваться</a>
+    <a href="{% url 'cabinet:sign_up' %}">Зарегистрироваться</a>
 {% endif %}
 </body>
 </html>
