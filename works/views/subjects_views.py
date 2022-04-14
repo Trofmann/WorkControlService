@@ -11,6 +11,7 @@ from works.views.base import BaseUpdateCreateView
 
 class SubjectsListView(LoginRequiredMixin, ListView):
     """Все предметы"""
+    title = 'Предметы'
     context_object_name = 'subjects'
     template_name = 'works/subjects_list.html'
 
