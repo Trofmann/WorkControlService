@@ -3,6 +3,7 @@ from django.contrib.auth.views import LoginView as BaseLoginView, LogoutView as 
 
 class LoginView(BaseLoginView):
     """Вход на сайт"""
+    title = 'Вход'
     template_name = 'cabinet/login.html'
 
 

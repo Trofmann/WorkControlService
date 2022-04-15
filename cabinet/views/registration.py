@@ -6,6 +6,7 @@ from cabinet.forms import UserCreationForm
 
 class RegistrationView(CreateView):
     """Регистрация пользователя"""
+    title = 'Регистрация'
     form_class = UserCreationForm
     template_name = 'form_base.html'
 
