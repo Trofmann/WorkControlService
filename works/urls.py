@@ -9,10 +9,9 @@ urlpatterns = []
 # Предметы
 urlpatterns += [
     re_path('^$', views.SubjectsListView.as_view(), name='subjects_list'),
-    # re_path('^add_subject/$', views.SubjectCreateView.as_view(), name='add_subject'),
-    re_path('^update_subject/(?P<pk>[0-9]*)/$', views.SubjectUpdateView.as_view(), name='update_subject'),
+    re_path('^add_subject/$', views.SubjectCreateModalView.as_view(), name='add_subject'),
+    re_path('^update_subject/(?P<pk>[0-9]*)/$', views.SubjectUpdateModalView.as_view(), name='update_subject'),
     re_path('^delete_subject/(?P<subject_pk>[0-9]*)', views.delete_subject, name='delete_subject'),
-    re_path('^add_subject/$', views.SubjectCreateModalView.as_view(), name='add_subject')
 ]
 
 # Работы

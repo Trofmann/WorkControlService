@@ -1,4 +1,4 @@
-from bootstrap_modal_forms.generic import BSModalCreateView
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
@@ -19,10 +19,32 @@ class SubjectsListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Subject.objects.filter(user=self.request.user)
 
+    def update_url(self):
+        return reverse('works:update_subject')
 
-class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
+
+# class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
+#     model = Subject
+#     form_class = SubjectForm
+#
+#     entity_name = 'предмет'
+#     entity_name_genitive = 'предмета'
+#     entity_name_accusative = 'предмет'
+#
+#     def get_success_url(self):
+#         return reverse('works:subjects_list')
+#
+#     def get_form_kwargs(self, **kwargs):
+#         kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)
+#         kwargs['user'] = self.request.user
+#         return kwargs
+
+
+class SubjectCreateModalViewMixin(BaseUpdateCreateView):
+    template_name = 'modal.html'
+    form_class = SubjectModalForm
     model = Subject
-    form_class = SubjectForm
+    success_message = 'Success: Book was created.'
 
     entity_name = 'предмет'
     entity_name_genitive = 'предмета'
@@ -32,16 +54,16 @@ class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
         return reverse('works:subjects_list')
 
     def get_form_kwargs(self, **kwargs):
-        kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)
+        kwargs = super(SubjectCreateModalViewMixin, self).get_form_kwargs(**kwargs)
         kwargs['user'] = self.request.user
         return kwargs
 
 
-class SubjectCreateView(SubjectCreateUpdateViewMixin, CreateView):
+class SubjectCreateModalView(SubjectCreateModalViewMixin, BSModalCreateView):
     pass
 
 
-class SubjectUpdateView(SubjectCreateUpdateViewMixin, UpdateView):
+class SubjectUpdateModalView(SubjectCreateModalViewMixin, BSModalUpdateView):
     pass
 
 
@@ -50,17 +72,3 @@ def delete_subject(request, subject_pk):
     """Удаление предмета"""
     Subject.objects.get(pk=subject_pk).delete()
     return HttpResponseRedirect(reverse('works:subjects_list'))
-
-
-class SubjectCreateModalView(BSModalCreateView):
-    template_name = 'modal.html'
-    form_class = SubjectModalForm
-    success_message = 'Success: Book was created.'
-
-    def get_success_url(self):
-        return reverse('works:subjects_list')
-
-    def get_form_kwargs(self, **kwargs):
-        kwargs = super(SubjectCreateModalView, self).get_form_kwargs(**kwargs)
-        kwargs['user'] = self.request.user
-        return kwargs
