@@ -20,19 +20,33 @@
         <th></th>
     </tr>
 
-    {% for work in works %}
-        <tr>
-            <td>{{ work.name }}</td>
-            <td>{{ work.status_str }}</td>
-            <td>{{ work.deadline_table_value }}</td>
-            <td><a href="{% url 'works:update_work' work.pk %}">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </a></td>
-            <td><a href="{% url 'works:delete_work' work.pk %}">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </a></td>
-        </tr>
-    {% endfor %}
+    {% if not subjects %}
+            <tr>
+                <td colspan="8">Нет данных</td>
+            </tr>
+    {% else %}
+        {% for work in works %}
+            <tr
+                {% if subject.completed %}
+                                class="completed"
+                            {% else %}
+                                {% if subject.has_expired %}
+                                class="expired"
+                                {% endif %}
+                            {% endif %}
+            >
+                <td>{{ work.name }}</td>
+                <td>{{ work.status_str }}</td>
+                <td>{{ work.deadline_table_value }}</td>
+                <td><a href="{% url 'works:update_work' work.pk %}">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a></td>
+                <td><a href="{% url 'works:delete_work' work.pk %}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
 
 </table>
 <a href="{% url 'works:add_work' subject.pk %}" class="button">Добавить</a>
