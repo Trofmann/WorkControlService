@@ -1,3 +1,4 @@
-from .subjects_views import SubjectsListView, SubjectCreateView, SubjectUpdateView, delete_subject
+from .subjects_views import SubjectsListView, SubjectCreateView, SubjectUpdateView, delete_subject, \
+    SubjectCreateModalView
 
 from .works_views import WorksListView, WorkCreateView, WorkUpdateView, delete_work

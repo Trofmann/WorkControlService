@@ -8,6 +8,9 @@
     {% endblock title %}
     <link rel="stylesheet" type="text/css" href="{% static 'works/styles.css' %}?11123423511">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
 {% block navigation %}
@@ -29,5 +32,30 @@
 {% block table %}
 {% endblock table %}
 
+{% block modal %}
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <button id="create-table-object" class="btn btn-primary" type="button" name="button">Добавить</button>
+{% endblock modal %}
+<script src="{% static 'assets/js/bootstrap.js' %}"></script>
+{#<script src="{% static 'assets/js/jquery.js' %}"></script>#}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- You can alternatively load the minified version -->
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $("#create-table-object").modalForm({
+        formURL: "{% url 'works:add_subject' %}"
+    });
+
+});
+</script>
 </body>
 </html>
