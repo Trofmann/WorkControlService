@@ -19,25 +19,13 @@ class SubjectsListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Subject.objects.filter(user=self.request.user)
 
-    def update_url(self):
-        return reverse('works:update_subject')
+    @property
+    def add_url_str(self):
+        return 'works:add_subject'
 
-
-# class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
-#     model = Subject
-#     form_class = SubjectForm
-#
-#     entity_name = 'предмет'
-#     entity_name_genitive = 'предмета'
-#     entity_name_accusative = 'предмет'
-#
-#     def get_success_url(self):
-#         return reverse('works:subjects_list')
-#
-#     def get_form_kwargs(self, **kwargs):
-#         kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)
-#         kwargs['user'] = self.request.user
-#         return kwargs
+    @property
+    def update_url_str(self):
+        return 'works:update_subject'
 
 
 class SubjectCreateModalViewMixin(BaseUpdateCreateView):

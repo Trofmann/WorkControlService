@@ -47,8 +47,12 @@
                     <td>{{ subject.completed_works_count }}</td>
                     <td>{{ subject.expired_works_count }}</td>
                     <td>{{ subject.total_works_count }}</td>
-{#                    {{   block.super }}#}
-                    <td><button id="update-table-object"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                    <td>
+                        <button type="button" class="update-object"
+                                data-form-url="{% url view.update_url_str subject.pk %}">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td><a href="{% url 'works:delete_subject' subject.pk %}">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a></td>

@@ -31,7 +31,6 @@
 {% endblock header %}
 
 {% block table %}
-    <td><button id="update-table-object"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
 {% endblock table %}
 
 {% block modal %}
@@ -55,13 +54,11 @@
         $(document).ready(function () {
 
             $("#create-table-object").modalForm({
-                formURL: "{% url 'works:add_subject' %}"
+                formURL: "{% url view.add_url_str %}"
             });
-
-            $("#update-table-object").modalForm({
-                formURL: "{{ view.update_url }}"
+            $(".update-object").each(function () {
+                $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: false});
             });
-
         });
     </script>
 {% endblock scripts %}
