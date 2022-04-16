@@ -1,10 +1,11 @@
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView
 
-from works.forms import WorkForm
+from works.forms import WorkModalForm
 from works.models import Work, Subject
 from works.views.base import BaseUpdateCreateView
 
@@ -16,16 +17,28 @@ class WorksListView(LoginRequiredMixin, ListView):
     template_name = 'works/works_list.html'
 
     def get_queryset(self):
-        return Work.objects.filter(subject=self.kwargs['subject_pk'])
+        return Work.objects.filter(subject=self.subject)
 
     def get_context_data(self, **kwargs):
-        kwargs['subject'] = Subject.objects.get(pk=self.kwargs['subject_pk'])
+        kwargs['subject'] = self.subject
         return super(WorksListView, self).get_context_data(**kwargs)
+
+    @property
+    def subject(self):
+        return Subject.objects.get(pk=self.kwargs['subject_pk'])
+
+    @property
+    def add_url(self):
+        return reverse('works:add_work', args=[self.subject.pk])
+
+    @property
+    def update_url_str(self):
+        return 'works:update_work'
 
 
 class WorkUpdateCreateViewMixin(BaseUpdateCreateView):
     model = Work
-    form_class = WorkForm
+    form_class = WorkModalForm
 
     entity_name = 'работа'
     entity_name_genitive = 'работы'
@@ -44,12 +57,12 @@ class WorkUpdateCreateViewMixin(BaseUpdateCreateView):
         return kwargs
 
 
-class WorkCreateView(WorkUpdateCreateViewMixin, CreateView):
+class WorkCreateView(WorkUpdateCreateViewMixin, BSModalCreateView):
     """Создание работы"""
     pass
 
 
-class WorkUpdateView(WorkUpdateCreateViewMixin, UpdateView):
+class WorkUpdateView(WorkUpdateCreateViewMixin, BSModalUpdateView):
     """Редактирование работы"""
     pass
 

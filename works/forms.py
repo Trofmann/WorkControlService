@@ -1,26 +1,8 @@
+from bootstrap_modal_forms.forms import BSModalModelForm
 from django import forms
 from django.forms import SelectDateWidget
 
 from works.models import Subject, Work
-from bootstrap_modal_forms.forms import BSModalModelForm
-
-
-class SubjectForm(forms.ModelForm):
-    """Форма добавления предмета"""
-
-    class Meta:
-        model = Subject
-        fields = (
-            'name',
-        )
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
-        super(SubjectForm, self).__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        self.instance.user = self.user
-        return super(SubjectForm, self).save(commit)
 
 
 class SubjectModalForm(BSModalModelForm):
@@ -41,7 +23,7 @@ class SubjectModalForm(BSModalModelForm):
         return super(SubjectModalForm, self).save(commit)
 
 
-class WorkForm(forms.ModelForm):
+class WorkModalForm(BSModalModelForm):
     """Форма добавления работы"""
     deadline = forms.DateField(
         label='Дедлайн',
@@ -55,10 +37,10 @@ class WorkForm(forms.ModelForm):
             'subject',
         )
 
-    def __init__(self, subject, **kwargs):
+    def __init__(self, subject, *args, **kwargs):
         self.subject = subject
-        super(WorkForm, self).__init__(**kwargs)
+        super(WorkModalForm, self).__init__(**kwargs)
 
     def save(self, commit=True):
         self.instance.subject = self.subject
-        return super(WorkForm, self).save(commit)
+        return super(WorkModalForm, self).save(commit)

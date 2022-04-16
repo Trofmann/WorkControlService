@@ -20,8 +20,8 @@ class SubjectsListView(LoginRequiredMixin, ListView):
         return Subject.objects.filter(user=self.request.user)
 
     @property
-    def add_url_str(self):
-        return 'works:add_subject'
+    def add_url(self):
+        return reverse('works:add_subject')
 
     @property
     def update_url_str(self):
@@ -29,7 +29,6 @@ class SubjectsListView(LoginRequiredMixin, ListView):
 
 
 class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
-    template_name = 'modal.html'
     form_class = SubjectModalForm
     model = Subject
 

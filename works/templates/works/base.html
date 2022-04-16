@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <button id="create-table-object" class="btn btn-primary" type="button" name="button">Добавить</button>
+    <button id="create-table-object" class="btn btn-success" type="button" name="button">Добавить</button>
 {% endblock modal %}
 
 {% block scripts %}
@@ -54,7 +54,7 @@
         $(document).ready(function () {
 
             $("#create-table-object").modalForm({
-                formURL: "{% url view.add_url_str %}"
+                formURL: "{{  view.add_url }}"
             });
             $(".update-object").each(function () {
                 $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: false});

@@ -4,7 +4,7 @@ from django.views.generic import CreateView
 
 class BaseUpdateCreateView(LoginRequiredMixin):
     """Базовый миксин для создания и редактирования записей"""
-    template_name = 'form_base.html'
+    template_name = 'form_modal.html'
 
     create_action = 'Добавление'
     update_action = 'Редактирование'

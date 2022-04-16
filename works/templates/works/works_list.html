@@ -1,7 +1,7 @@
 {% extends 'works/base.html' %}
 
 {% block header %}
-<h1>Все работы по предмету {{ subject.name }}</h1>
+    <h1>Все работы по предмету {{ subject.name }}</h1>
 {% endblock header %}
 
 {% block navigation_pages %}
@@ -11,29 +11,31 @@
 {% endblock %}
 
 {% block table %}
-<table class="resp-tab">
-    <tr>
-        <th>Название</th>
-        <th>Статус</th>
-        <th>Дедлайн</th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    {% for work in works %}
+    <table class="resp-tab">
         <tr>
-            <td>{{ work.name }}</td>
-            <td>{{ work.status_str }}</td>
-            <td>{{ work.deadline_table_value }}</td>
-            <td><a href="{% url 'works:update_work' work.pk %}">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            </a></td>
-            <td><a href="{% url 'works:delete_work' work.pk %}">
-                <i class="fa fa-trash" aria-hidden="true"></i>
-            </a></td>
+            <th>Название</th>
+            <th>Статус</th>
+            <th>Дедлайн</th>
+            <th></th>
+            <th></th>
         </tr>
-    {% endfor %}
 
-</table>
-<a href="{% url 'works:add_work' subject.pk %}" class="button">Добавить</a>
+        {% for work in works %}
+            <tr>
+                <td>{{ work.name }}</td>
+                <td>{{ work.status_str }}</td>
+                <td>{{ work.deadline_table_value }}</td>
+                <td>
+                    <button type="button" class="update-object"
+                            data-form-url="{% url view.update_url_str work.pk %}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+                <td><a href="{% url 'works:delete_work' work.pk %}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
 {% endblock table %}
