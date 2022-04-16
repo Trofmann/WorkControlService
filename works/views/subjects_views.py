@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView
 
-from works.forms import SubjectForm, SubjectModalForm
+from works.forms import SubjectModalForm
 from works.models import Subject
 from works.views.base import BaseUpdateCreateView
 
@@ -28,7 +28,7 @@ class SubjectsListView(LoginRequiredMixin, ListView):
         return 'works:update_subject'
 
 
-class SubjectCreateModalViewMixin(BaseUpdateCreateView):
+class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
     template_name = 'modal.html'
     form_class = SubjectModalForm
     model = Subject
@@ -42,16 +42,16 @@ class SubjectCreateModalViewMixin(BaseUpdateCreateView):
         return reverse('works:subjects_list')
 
     def get_form_kwargs(self, **kwargs):
-        kwargs = super(SubjectCreateModalViewMixin, self).get_form_kwargs(**kwargs)
+        kwargs = super(SubjectCreateUpdateViewMixin, self).get_form_kwargs(**kwargs)
         kwargs['user'] = self.request.user
         return kwargs
 
 
-class SubjectCreateModalView(SubjectCreateModalViewMixin, BSModalCreateView):
+class SubjectCreateModalView(SubjectCreateUpdateViewMixin, BSModalCreateView):
     pass
 
 
-class SubjectUpdateModalView(SubjectCreateModalViewMixin, BSModalUpdateView):
+class SubjectUpdateModalView(SubjectCreateUpdateViewMixin, BSModalUpdateView):
     pass
 
 
