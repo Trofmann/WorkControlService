@@ -32,7 +32,6 @@ class SubjectCreateUpdateViewMixin(BaseUpdateCreateView):
     template_name = 'modal.html'
     form_class = SubjectModalForm
     model = Subject
-    success_message = 'Success: Book was created.'
 
     entity_name = 'предмет'
     entity_name_genitive = 'предмета'
