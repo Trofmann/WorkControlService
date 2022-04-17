@@ -12,7 +12,7 @@ class Subject(models.Model):
         verbose_name='Название',
         max_length=200,
         null=False, blank=False,
-        unique=True,
+        unique=False,
     )
 
     user = models.ForeignKey(
@@ -27,6 +27,7 @@ class Subject(models.Model):
         verbose_name = 'Предмет',
         verbose_name_plural = 'Предметы'
         ordering = ['name']
+        unique_together = ['name', 'user']
 
     def __str__(self):
         return self.name
