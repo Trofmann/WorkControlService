@@ -1,16 +1,13 @@
-
 .logo {
-    position: absolute;
-    margin-left: 81%;
-    margin-top: -3%;
+    position: fixed;
+    margin-left: 88%;
+    margin-top: -2%;
 }
 
-
-.logo::after {
+.logo::before {
     content: url("../../static/works/images/logo.png");
-    display: block;
+    display: inline-block;
 }
-
 
 .menu-bar {
     border-radius: 25px;
@@ -23,6 +20,7 @@
     padding: 0 15px;
     margin: 8px 0 0 0;
 }
+
 .menu-bar li {
   list-style: none;
   color: white;
@@ -116,30 +114,54 @@
 }
 
 
-.button {
-    display: inline-block;
-    float: right;
-    margin-right: 35px;
-    margin-top: 20px;
-    padding: 13px 10px;
-    font-size: 17px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4CAF4E;
-    border: none;
-    border-radius: 19px;
-    box-shadow: 0 9px #999;
+/*.button {*/
+/*    display: inline-block;*/
+/*    float: right;*/
+/*    margin-right: 35px;*/
+/*    margin-top: 20px;*/
+/*    padding: 13px 10px;*/
+/*    font-size: 17px;*/
+/*    cursor: pointer;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    outline: none;*/
+/*    color: #fff;*/
+/*    background-color: #4CAF4E;*/
+/*    border: none;*/
+/*    border-radius: 19px;*/
+/*    box-shadow: 0 9px #999;*/
+/*}*/
+
+/*.button:hover {background-color: #3e8e41}*/
+
+/*.button:active {*/
+/*  background-color: #3e8e41;*/
+/*  box-shadow: 0 5px #666;*/
+/*  transform: translateY(4px);*/
+/*}*/
+
+@media (max-width: 1500px) {
+    .logo {
+        position: fixed;
+        margin-left: 85%;
+        margin-top: -3%;
+    }
 }
 
-.button:hover {background-color: #3e8e41}
+@media (max-width: 1060px) {
+    .logo {
+        position: fixed;
+        margin-left: 85%;
+        margin-top: -3%;
+    }
+}
 
-.button:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+@media (max-width: 800px) {
+    .logo {
+        position: fixed;
+        margin-left: 35%;
+        margin-top: -3%;
+    }
 }
 
 @media (max-width: 767px) {
@@ -216,4 +238,17 @@
         border-right: 1px solid #E6E4E4;
         background-color: rgba(248, 37, 37, 0.5);
     }
+
+    .logo {
+        position: fixed;
+        margin-left: 85%;
+        margin-top: -2%;
+    }
+
+}
+
+
+.btn {
+    margin-top: 15px;
+    margin-left: 90%;
 }
