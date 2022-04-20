@@ -123,3 +123,7 @@ class Work(models.Model):
     @property
     def deadline_table_value(self):
         return self.deadline if self.deadline is not None else '—'
+
+    @property
+    def completed(self):
+        return self.status == COMPLETED_CODE

@@ -22,7 +22,7 @@
 
 
         {% for work in works %}
-            <tr>
+            <tr {% if work.expired %}class="expired" {% elif work.completed %}class="completed"{% endif %}>
                 <td>{{ work.name }}</td>
                 <td>{{ work.status_str }}</td>
                 <td>{{ work.deadline_table_value }}</td>
