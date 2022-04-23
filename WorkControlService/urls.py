@@ -16,12 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from cabinet.views import TitleView, update_server
+from cabinet.views import TitleView
 
 urlpatterns = [
     path('works/', include('works.urls')),
     path('cabinet/', include('cabinet.urls')),
     path('admin/', admin.site.urls),
     re_path('$', TitleView.as_view(), name='title_page'),
-    re_path('update_server', update_server, name='update_server'),
 ]
