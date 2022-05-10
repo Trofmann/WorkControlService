@@ -14,6 +14,7 @@
             <th>Выполнено</th>
             <th>Просрочено</th>
             <th>Всего</th>
+            <th>Комментарий</th>
             <th></th>
             <th></th>
         </tr>
@@ -47,6 +48,7 @@
                     <td>{{ subject.completed_works_count }}</td>
                     <td>{{ subject.expired_works_count }}</td>
                     <td>{{ subject.total_works_count }}</td>
+                    <td>{% if subject.comment %}{{ subject.comment }}{% endif %}
                     <td>
                         <button type="button" class="update-object"
                                 data-form-url="{% url view.update_url_str subject.pk %}">

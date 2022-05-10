@@ -23,6 +23,11 @@ class Subject(models.Model):
         null=False, blank=False,
     )
 
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        null=True, blank=True
+    )
+
     class Meta:
         verbose_name = 'Предмет',
         verbose_name_plural = 'Предметы'
@@ -97,6 +102,11 @@ class Work(models.Model):
         null=False, blank=False,
         choices=STATUSES,
         default=NOT_STARTED_CODE,
+    )
+
+    comment = models.TextField(
+        verbose_name='Комментарий',
+        null=True, blank=True,
     )
 
     class Meta:

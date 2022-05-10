@@ -12,6 +12,7 @@ class SubjectModalForm(BSModalModelForm):
         model = Subject
         fields = (
             'name',
+            'comment',
         )
 
     def __init__(self, *args, **kwargs):

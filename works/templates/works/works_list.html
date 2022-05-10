@@ -16,6 +16,7 @@
             <th>Название</th>
             <th>Статус</th>
             <th>Дедлайн</th>
+            <th>Комментарий</th>
             <th></th>
             <th></th>
         </tr>
@@ -26,6 +27,7 @@
                 <td>{{ work.name }}</td>
                 <td>{{ work.status_str }}</td>
                 <td>{{ work.deadline_table_value }}</td>
+                <td>{% if work.comment %}{{ work.comment }}{% endif %}</td>
                 <td>
                     <button type="button" class="update-object"
                             data-form-url="{% url view.update_url_str work.pk %}">
