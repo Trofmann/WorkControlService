@@ -120,7 +120,7 @@ class Work(models.Model):
     @property
     def status_str(self):
         """Статус хранится в виде числа, а отображать надо в виде слова"""
-        return STATUSES_DICT[self.status]
+        return self.get_status_display()
 
     @property
     def expired(self):
